@@ -78,14 +78,17 @@ void updatePosition(std::vector<Particle> &particles, double dt){
 }
 
 void output(const std::vector<Particle> &particles, std::ofstream &out) {
-    out << particles.size() << std::endl;
+    out << particles.size() << "\t"; 
+
     for (const Particle &p : particles) {
         out << p.mass << "\t" << p.x << "\t" << p.y << "\t" << p.z
             << "\t" << p.vx << "\t" << p.vy << "\t" << p.vz
-            << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << std::endl;
+            << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << "\t"; 
     }
-    out << std::endl;
+
+    out << std::endl; 
 }
+
 
 
 
