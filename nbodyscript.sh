@@ -4,10 +4,6 @@
 #SBATCH --time=01:00:00
 #SBATCH --mem=32G
 
-
-./nbody 100 1 10000 100
-./nbody 1000 1 10000 100
-./nbody 2 200 5000000 1000
 TEST_CASES=(
     "100 1 10000 100"       
     "1000 1 10000 100"      
@@ -22,8 +18,16 @@ for test in "${TEST_CASES[@]}"; do
     DT=${PARAMS[1]}
     NUM_ITER=${PARAMS[2]}
 
-    LOG_FILE="logs/output_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.tsv"
-    
-    ./nbody $test > "$LOG_FILE"
+    OUTPUT_FILE="logs/output_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.tsv"
+    LOG_FILE="logs/timelog_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.txt"
+
+    ./nbody $test
+
+    mv output.tsv "$OUTPUT_FILE"
+    mv timelog.txt "$LOG_FILE"
+
+    echo "Saved results: $OUTPUT_FILE"
+    echo "Saved time log: $LOG_FILE"
 done
+
 
