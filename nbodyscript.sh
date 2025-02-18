@@ -4,6 +4,8 @@
 #SBATCH --time=01:00:00
 #SBATCH --mem=32G
 
+touch output.tsv timelog.txt 
+
 TEST_CASES=(
     "100 1 10000 100"       
     "1000 1 10000 100"      
@@ -21,7 +23,9 @@ for test in "${TEST_CASES[@]}"; do
     OUTPUT_FILE="logs/output_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.tsv"
     LOG_FILE="logs/timelog_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.txt"
 
+
     ./nbody $test
+
 
     mv output.tsv "$OUTPUT_FILE"
     mv timelog.txt "$LOG_FILE"
