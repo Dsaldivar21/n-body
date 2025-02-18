@@ -83,6 +83,7 @@ void output(const std::vector<Particle> &particles, std::ofstream &out) {
             << "\t" << p.vx << "\t" << p.vy << "\t" << p.vz
             << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << std::endl;
     }
+    out << std::endl;
 }
 
 
@@ -101,7 +102,7 @@ int main(int argc, char *argv[]){
     std::vector<Particle> particles;
     createParticles(particles, numParticles);
 
-    std::ofstream out("solar.tsv");
+    std::ofstream out("solar.txt");
 
     for (int i = 0; i < numIterations; i++){
         calculateForces(particles);
