@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
     std::vector<Particle> particles;
     createParticles(particles, numParticles);
 
-    std::ofstream out("output.tsv");
+    std::ofstream out("./output.tsv");
 
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -122,7 +122,7 @@ int main(int argc, char *argv[]){
     auto end = std::chrono::high_resolution_clock::now();
     double duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count();
 
-    std::ofstream log("timelog.txt");
+    std::ofstream log("./timelog.txt");
     log << "Time taken: " << duration << " seconds." << std::endl;
     log.close();
 
