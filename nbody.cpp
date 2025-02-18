@@ -79,12 +79,12 @@ void updatePosition(std::vector<Particle> &particles, double dt){
 void output(const std::vector<Particle> &particles, std::ofstream &out) {
     out << particles.size() << std::endl;
     for (const Particle &p : particles) {
-        out << "\t" << p.mass << "\t" << p.x << "\t" << p.y << "\t" << p.z
+        out << p.mass << "\t" << p.x << "\t" << p.y << "\t" << p.z
             << "\t" << p.vx << "\t" << p.vy << "\t" << p.vz
-            << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << std::endl;  // Added newline here
+            << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << std::endl;
     }
-    out << "\n";
 }
+
 
 
 int main(int argc, char *argv[]){
