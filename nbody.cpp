@@ -3,6 +3,7 @@
 #include <string>
 #include <cmath>
 #include <random>
+#include <chrono>
 
 const double G = 6.674e-11;
 const double SOFTENING = 0.0001;
@@ -108,6 +109,7 @@ int main(int argc, char *argv[]){
 
     std::ofstream out("output.tsv");
 
+    auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < numIterations; i++){
         calculateForces(particles);
@@ -116,7 +118,14 @@ int main(int argc, char *argv[]){
             output(particles, out);
         }
     }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    double duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count();
     out.close();
+
+    
+    std::cout << "Simulation Time: " << duration << " seconds." << std::endl;
+
     
     return 0;
 }
