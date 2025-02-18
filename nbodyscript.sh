@@ -4,7 +4,7 @@
 #SBATCH --time=01:00:00
 #SBATCH --mem=32G
 
-touch output.tsv timelog.txt 
+touch output.tsv
 
 TEST_CASES=(
     "100 1 10000 100"       
@@ -12,7 +12,7 @@ TEST_CASES=(
     "2 200 5000000 1000"    
 )
 
-mkdir -p logs
+mkdir -p results
 
 for test in "${TEST_CASES[@]}"; do    
     PARAMS=($test)
@@ -21,17 +21,11 @@ for test in "${TEST_CASES[@]}"; do
     NUM_ITER=${PARAMS[2]}
 
     OUTPUT_FILE="logs/output_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.tsv"
-    LOG_FILE="logs/timelog_${NUM_PARTICLES}p_${DT}dt_${NUM_ITER}steps.txt"
 
-
+    > output.tsv  
     ./nbody $test
 
-
-    mv output.tsv "$OUTPUT_FILE"
-    mv timelog.txt "$LOG_FILE"
-
-    echo "Saved results: $OUTPUT_FILE"
-    echo "Saved time log: $LOG_FILE"
+   
 done
 
 
