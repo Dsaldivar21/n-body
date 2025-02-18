@@ -105,10 +105,11 @@ int main(int argc, char *argv[]){
     int outputInterval = std::stoi(argv[4]);
 
     std::vector<Particle> particles;
-    auto start = std::chrono::high_resolution_clock::now();
     createParticles(particles, numParticles);
 
-    std::ofstream out("solar.tsv");
+    std::ofstream out("output.tsv");
+
+    auto start = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < numIterations; i++){
         calculateForces(particles);
@@ -120,7 +121,12 @@ int main(int argc, char *argv[]){
     out.close();
     auto end = std::chrono::high_resolution_clock::now();
     double duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count();
-    std::cout << "Time taken: " << duration << " seconds." << std::endl;
+
+    std::ofstream log("timelog.txt");
+    log << "Time taken: " << duration << " seconds." << std::endl;
+    log.close();
+
+    
     return 0;
 }
 
