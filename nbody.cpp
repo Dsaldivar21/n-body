@@ -18,10 +18,11 @@ void createParticles(std::vector<Particle> &particles, int numParticles){
     std::random_device rndm;
     std::mt19937 gen(rndm());
     std::uniform_real_distribution<> dis(-1.0, 1.0);
+    std::uniform_real_distribution<> massDis(0.1, 1.0);
 
     for (int i = 0; i < numParticles; i++){
         Particle p;
-        p.mass = dis(gen);
+        p.mass = massDis(gen);
         p.x = dis(gen);
         p.y = dis(gen);
         p.z = dis(gen);
@@ -48,7 +49,7 @@ void calculateForces(std::vector<Particle> &particles){
             double dx = particles[j].x - particles[i].x;
             double dy = particles[j].y - particles[i].y;
             double dz = particles[j].z - particles[i].z;
-            double distance = std::sqrt(dx * dx + dy * dy + dz * dz + SOFTENING);
+            double distance = std::sqrt(dx * dx + dy * dy + dz * dz + SOFTENING * SOFTENING);
             double force = (G * particles[i].mass * particles[j].mass) / (distance * distance);
             double fx = force * dx / distance;
             double fy = force * dy / distance;
@@ -102,7 +103,7 @@ int main(int argc, char *argv[]){
     std::vector<Particle> particles;
     createParticles(particles, numParticles);
 
-    std::ofstream out("solar.txt");
+    std::ofstream out("solar.tsv");
 
     for (int i = 0; i < numIterations; i++){
         calculateForces(particles);
