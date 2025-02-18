@@ -21,13 +21,13 @@ void createParticles(std::vector<Particle> &particles, int numParticles){
 
     for (int i = 0; i < numParticles; i++){
         Particle p;
-        p.mass = 1.0;
+        p.mass = dis(gen);
         p.x = dis(gen);
         p.y = dis(gen);
         p.z = dis(gen);
-        p.vx = 0.0;
-        p.vy = 0.0;
-        p.vz = 0.0;
+        p.vx = dis(gen);
+        p.vy = dis(gen);
+        p.vz = dis(gen);
         p.fx = 0.0;
         p.fy = 0.0;
         p.fz = 0.0;
@@ -67,12 +67,12 @@ void calculateForces(std::vector<Particle> &particles){
 
 void updatePosition(std::vector<Particle> &particles, double dt){
     for (Particle &p : particles){
-        p.vx += (p.fx / p.mass) * dt;
-        p.vy += (p.fy / p.mass) * dt;
-        p.vz += (p.fz / p.mass) * dt;
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
-        p.z += p.vz * dt;
+        p.vx = p.vx + (p.fx / p.mass) * dt;
+        p.vy = p.vy + (p.fy / p.mass) * dt;
+        p.vz = p.vz + (p.fz / p.mass) * dt;
+        p.x = p.x + p.vx * dt;
+        p.y = p.y + p.vy * dt;
+        p.z = p.z + p.vz * dt;
     }
 }
 
