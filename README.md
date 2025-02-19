@@ -1,5 +1,5 @@
 # README: Running N-Body Simulation
-*DISCLAIMER THIS WAS AI GENERATED OpenAI. (2025). ChatGPT [Large language model]. https://chatgpt.com*
+*DISCLAIMER THIS WAS PARTIALLY AI GENERATED OpenAI. (2025). ChatGPT [Large language model]. https://chatgpt.com*
 
 ## Prerequisites
 Ensure you have the following installed:
